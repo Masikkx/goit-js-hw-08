@@ -64,29 +64,26 @@ const images = [
   },
 ];
 
+const list = document.querySelector('.gallery');
 
-const list = document.querySelector(".gallery");
+const galleryMarkup = images
+  .map(({ preview, original, description }) => `
+    <li class="gallery-item">
+      <a class="gallery-link" href="${original}">
+        <img
+          class="gallery-image"
+          src="${preview}"
+          data-src="${original}"
+          alt="${description}"
+          loading="lazy"
+        />
+      </a>
+    </li>
+  `)
+  .join('');
 
-images.forEach(({ preview, original, description }) => {
-	// ---Li---
-	const li = document.createElement("li");
-	li.classList.add("gallery-item");
-	list.appendChild(li);
+list.insertAdjacentHTML('beforeend', galleryMarkup);
 
-	// ---A---
-	const a = document.createElement("a");
-	a.classList.add("gallery-link");
-	a.href = original;
-	li.appendChild(a);
-
-	// ---Img---
-	const img = document.createElement("img");
-	img.classList.add("gallery-image");
-	img.src = preview;
-	img.dataset.src = original;
-	img.alt = description;
-	a.appendChild(img);
-});
 
 list.addEventListener("click", selectImage);
 function selectImage(event) {
