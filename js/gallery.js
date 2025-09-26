@@ -73,7 +73,7 @@ const galleryMarkup = images
         <img
           class="gallery-image"
           src="${preview}"
-          data-src="${original}"
+          data-source="${original}"
           alt="${description}"
           loading="lazy"
         />
@@ -91,7 +91,7 @@ function selectImage(event) {
 		return;
 	}
 	event.preventDefault();
-	const selectedImage = event.target.dataset.src;
+	const selectedImage = event.target.dataset.source;
 	console.log(selectedImage);
 
 	const instance = basicLightbox.create(`
